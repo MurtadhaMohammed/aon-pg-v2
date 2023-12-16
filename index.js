@@ -22,6 +22,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/upload", function (req, res) {
+  //save on project
   req.files.foo.mv(`files/${req.files.foo.name}`, (err) => {
     if (!err) res.send("File uploaded");
     else res.send({ err });
@@ -29,6 +30,7 @@ app.post("/upload", function (req, res) {
 });
 
 app.post("/v2/upload", async function (req, res) {
+  //save on server (uplaodcare.com)
   const result = await uploadFile(req.files.foo.data, {
     publicKey: process.env.PUBLICKEY,
     store: "auto",
